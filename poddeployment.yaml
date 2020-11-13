@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podwebsite-deployment
+  labels:
+    app: podwebsite-deployment
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+      - name: webpod
+        image: acrpod.azurecr.io/website:latest
+        ports:
+        - containerPort: 80
